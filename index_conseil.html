@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sélène Conseil — Création Web, IA et Audit Financier pour PME</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0b1929;
+  --navy2:#0f2238;
+  --navy3:#1a3a5c;
+  --white:#ffffff;
+  --off:#f6f5f2;
+  --border:#e4e0d8;
+  --text:#0a0a0a;
+  --text2:#5a5a5a;
+  --text3:#999;
+  --gold:#c49a0a;
+  --gold2:#e0b820;
+  --green:#0a7a3e;
+  --r:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;font-size:17px;line-height:1.65}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:64px;padding:0 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--navy);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.nav-logo{
+  font-size:19px;font-weight:800;color:#fff;
+  text-decoration:none;letter-spacing:-.01em;
+  display:flex;align-items:center;gap:2px;
+}
+.nav-logo em{font-style:italic;font-weight:300;color:var(--gold2)}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{
+  font-size:13px;font-weight:700;
+  padding:10px 22px;border-radius:999px;
+  background:var(--gold);color:#fff;border:none;
+  cursor:pointer;text-decoration:none;transition:all .2s;
+}
+.nav-cta:hover{background:var(--gold2)}
+
+/* HERO */
+.hero{
+  background:#f2ede4;
+  padding:140px 3rem 100px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(11,25,41,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(11,25,41,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 30%,transparent 100%);
+}
+.hero-inner{max-width:1060px;margin:0 auto;position:relative;z-index:1}
+.hero-tag{
+  font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--navy);margin-bottom:1.6rem;opacity:.5;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-tag::before{content:'';display:block;width:24px;height:2px;background:var(--navy)}
+.hero-h1{
+  font-size:clamp(40px,6.5vw,82px);
+  font-weight:900;line-height:1.02;
+  color:var(--navy);letter-spacing:-.03em;margin-bottom:1.4rem;
+}
+.hero-h1 em{font-style:italic;font-weight:300;color:rgba(11,25,41,.45);display:block;font-size:clamp(24px,4vw,44px);letter-spacing:-.01em;margin-top:.3rem}
+.hero-p{
+  font-size:19px;font-weight:300;line-height:1.75;
+  color:rgba(11,25,41,.55);max-width:560px;margin-bottom:2.8rem;
+}
+.hero-p strong{color:var(--navy);font-weight:600}
+
+/* 3 PRODUITS CARDS HERO */
+.produits-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  margin-top:3.5rem;
+}
+.produit-card{
+  background:rgba(11,25,41,.05);
+  border:1.5px solid rgba(11,25,41,.12);
+  border-radius:var(--r);padding:2rem 1.8rem;
+  text-decoration:none;
+  transition:all .25s;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.produit-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  transition:opacity .25s;
+}
+.produit-card.c1::before{background:var(--gold)}
+.produit-card.c2::before{background:#4dba87}
+.produit-card.c3::before{background:#5b9cf6}
+.produit-card:hover{
+  background:rgba(11,25,41,.1);
+  border-color:rgba(11,25,41,.3);
+  transform:translateY(-4px);
+}
+.pc-icon{font-size:28px;margin-bottom:1rem}
+.pc-label{
+  font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(11,25,41,.85);margin-bottom:.5rem;
+}
+.pc-title{
+  font-size:20px;font-weight:800;color:var(--navy);
+  margin-bottom:.6rem;letter-spacing:-.01em;line-height:1.15;
+}
+.pc-desc{
+  font-size:14px;font-weight:400;color:rgba(11,25,41,.8);
+  line-height:1.6;flex:1;margin-bottom:1.4rem;
+}
+.pc-price{
+  font-size:13px;font-weight:600;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.pc-price .amount{font-size:18px;font-weight:800;color:var(--gold2)}
+.pc-price .arrow{color:rgba(11,25,41,.6);font-size:16px;transition:transform .2s}
+.produit-card:hover .arrow{transform:translateX(4px);color:var(--navy)}
+
+/* SECTIONS */
+.sw{background:var(--white);padding:96px 3rem}
+.sn{background:var(--navy);padding:96px 3rem}
+.wrap{max-width:1060px;margin:0 auto}
+.stag{
+  font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:1rem;
+  display:flex;align-items:center;gap:8px;
+}
+.stag::before{content:'';display:block;width:18px;height:2px;background:var(--gold)}
+.sn .stag{color:rgba(255,255,255,.3)}
+.sn .stag::before{background:var(--gold2)}
+h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;color:var(--text);letter-spacing:-.02em;margin-bottom:1rem}
+.sn h2{color:#fff}
+.lead{font-size:18px;font-weight:300;line-height:1.75;color:var(--text2);max-width:560px}
+.sn .lead{color:rgba(255,255,255,.5)}
+
+/* CRÉATION DE SITE */
+.offres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2.5rem}
+.offre{
+  border:1.5px solid var(--border);border-radius:var(--r);
+  padding:2rem 1.8rem;background:var(--white);
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.offre:hover{border-color:var(--navy);transform:translateY(-3px)}
+.offre::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.offre.o1::before{background:var(--gold)}
+.offre.o2::before{background:var(--navy3)}
+.offre.o3::before{background:#5b9cf6}
+.offre-badge{
+  display:inline-block;font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 11px;border-radius:999px;
+  background:var(--navy);color:#fff;margin-bottom:1.2rem;
+}
+.offre h3{font-size:20px;font-weight:800;color:var(--text);margin-bottom:.5rem;letter-spacing:-.01em}
+.offre p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.65;margin-bottom:1.4rem}
+.offre-price{
+  font-size:22px;font-weight:900;color:var(--navy);
+  letter-spacing:-.02em;
+}
+.offre-price span{font-size:14px;font-weight:400;color:var(--text3)}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;align-items:center;margin-top:2.5rem}
+.feat-list{display:flex;flex-direction:column;gap:16px}
+.feat-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px;border-radius:var(--r);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);
+}
+.feat-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.feat-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:3px}
+.feat-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.6}
+.feat-visual{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--r);padding:1.8rem;
+}
+.fv-bar{
+  background:rgba(255,255,255,.04);border-radius:6px;
+  padding:.5rem .8rem;margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:rgba(255,255,255,.4);
+}
+.fv-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.fv-line{height:6px;border-radius:3px;background:rgba(255,255,255,.08);flex:1}
+.fv-chat{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.fv-msg{
+  padding:10px 14px;border-radius:10px;
+  font-size:12px;line-height:1.55;max-width:85%;
+}
+.fv-msg.user{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);align-self:flex-end}
+.fv-msg.bot{background:rgba(91,156,246,.15);color:rgba(255,255,255,.7);border:1px solid rgba(91,156,246,.2)}
+.fv-typing{
+  display:flex;align-items:center;gap:5px;
+  padding:10px 14px;background:rgba(91,156,246,.1);
+  border-radius:10px;max-width:60px;
+  border:1px solid rgba(91,156,246,.15);
+}
+.fv-typing span{width:6px;height:6px;border-radius:50%;background:rgba(91,156,246,.6);animation:blink 1.2s infinite}
+.fv-typing span:nth-child(2){animation-delay:.2s}
+.fv-typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+
+/* STRATAUDIT CTA */
+.strataudit-cta{
+  display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
+  background:rgba(255,255,255,.04);
+  border:1.5px solid rgba(255,255,255,.08);
+  border-radius:var(--r);padding:2.5rem 3rem;
+  margin-top:2.5rem;
+}
+.sa-left h3{font-size:26px;font-weight:800;color:#fff;margin-bottom:.4rem;letter-spacing:-.01em}
+.sa-left p{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);line-height:1.65}
+.sa-price{
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:.3rem;text-align:right;
+}
+.sa-amount{font-size:40px;font-weight:900;color:var(--gold2);line-height:1;letter-spacing:-.02em}
+.sa-once{font-size:12px;color:rgba(255,255,255,.3);margin-top:2px;text-align:right}
+.btn-sa{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:1rem;
+  font-size:13px;font-weight:700;
+  padding:12px 24px;border-radius:999px;
+  background:var(--gold);color:#fff;border:none;
+  text-decoration:none;cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.btn-sa:hover{background:var(--gold2)}
+
+/* POURQUOI NOUS */
+.pourquoi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2.5rem}
+.pq{
+  border:1.5px solid var(--border);border-radius:var(--r);
+  padding:2rem 1.8rem;background:var(--white);
+  transition:border-color .2s,transform .2s;
+}
+.pq:hover{border-color:var(--navy);transform:translateY(-3px)}
+.pq-icon{font-size:28px;margin-bottom:1rem}
+.pq h3{font-size:18px;font-weight:800;color:var(--text);margin-bottom:.5rem;letter-spacing:-.01em}
+.pq p{font-size:14px;color:var(--text2);font-weight:300;line-height:1.65}
+
+/* CTA FINAL */
+.cta-final{
+  text-align:center;
+  background:var(--navy);
+  padding:96px 3rem;
+}
+.cta-final h2{color:#fff;margin-bottom:.8rem;max-width:700px;margin-left:auto;margin-right:auto}
+.cta-final p{font-size:18px;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:2.5rem}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-main{
+  font-size:15px;font-weight:700;
+  padding:15px 36px;border-radius:999px;
+  background:var(--gold);color:#fff;border:none;
+  text-decoration:none;cursor:pointer;transition:all .2s;
+}
+.btn-main:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-light{
+  font-size:15px;font-weight:500;
+  padding:15px 28px;border-radius:999px;
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);
+  border:1.5px solid rgba(255,255,255,.15);
+  text-decoration:none;cursor:pointer;transition:all .2s;
+}
+.btn-light:hover{background:rgba(255,255,255,.14);color:#fff}
+
+/* FOOTER */
+footer{background:#060f1a;padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.f-logo{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.f-logo em{font-style:italic;font-weight:300;color:var(--gold2)}
+.f-copy{font-size:13px;color:rgba(255,255,255,.25)}
+.f-links{display:flex;gap:2rem}
+.f-links a{font-size:13px;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:#fff}
+
+/* ANIM */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+
+@media(max-width:768px){
+  nav{padding:0 1.2rem}.nav-links{display:none}
+  .hero,.sw,.sn,.cta-final{padding-left:1.5rem;padding-right:1.5rem}
+  .produits-grid,.offres-grid,.pourquoi-grid,.feat-grid{grid-template-columns:1fr}
+  .strataudit-cta{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+  .f-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><em>Sélène</em>&nbsp;Conseil</a>
+  <div class="nav-links">
+    <a href="#creation">Création web</a>
+    <a href="#agent-ia">Agent IA</a>
+    <a href="#strataudit">StratAudit</a>
+  </div>
+  <a href="mailto:contact.studioselene@gmail.com" class="nav-cta">Parlons de votre projet</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Pour dirigeants de PME et TPE</div>
+    <h1 class="hero-h1">
+      Des outils simples<br>pour diriger
+      <em>Création web, IA, audit financier</em>
+    </h1>
+    <p class="hero-p">
+      Trois outils conçus pour la même cible — <strong>le dirigeant de PME ou TPE</strong> qui veut une présence digitale sérieuse, des outils intelligents et une gestion financière claire.
+    </p>
+
+    <div class="produits-grid">
+      <a href="#creation" class="produit-card c1">
+        <div class="pc-icon">🌐</div>
+        <div class="pc-label">Service</div>
+        <div class="pc-title">Création de Site Web</div>
+        <div class="pc-desc">Un site professionnel sur mesure qui reflète votre entreprise et convertit vos visiteurs en clients.</div>
+        <div class="pc-price">
+          <span class="amount">dès 500 €</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a href="#agent-ia" class="produit-card c2">
+        <div class="pc-icon">🤖</div>
+        <div class="pc-label">Abonnement</div>
+        <div class="pc-title">Agent IA pour votre site</div>
+        <div class="pc-desc">Un assistant intelligent intégré à votre site — répond à vos clients, qualifie vos leads, disponible 24h/24.</div>
+        <div class="pc-price">
+          <span class="amount">199 € / mois</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+      <a href="https://strataudit.fr" target="_blank" class="produit-card c3">
+        <div class="pc-icon">📊</div>
+        <div class="pc-label">Produit digital</div>
+        <div class="pc-title">StratAudit — Audit Financier</div>
+        <div class="pc-desc">Entrez vos chiffres et recevez en 60 secondes un diagnostic financier complet avec recommandations chiffrées.</div>
+        <div class="pc-price">
+          <span class="amount">139 €</span>
+          <span class="arrow">↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CRÉATION DE SITE -->
+<section class="sw" id="creation">
+  <div class="wrap">
+    <div class="stag reveal">Création web</div>
+    <h2 class="reveal">Un site qui travaille pour vous,<br>même la nuit</h2>
+    <p class="lead reveal">Nous concevons des sites web sur mesure — rapides, lisibles, conçus pour convertir. Sans template générique.</p>
+
+    <div class="offres-grid reveal">
+      <div class="offre o1">
+        <div class="offre-badge">Vitrine</div>
+        <h3>Site Vitrine</h3>
+        <p>5 à 7 pages, design sur mesure, formulaire de contact, optimisé mobile et SEO. Livré en 2 semaines.</p>
+        <div class="offre-price">500 € <span>paiement unique</span></div>
+      </div>
+      <div class="offre o2">
+        <div class="offre-badge">Pro</div>
+        <h3>Site Professionnel</h3>
+        <p>Jusqu'à 15 pages, animations, blog, galerie, intégration réseaux sociaux. Livré en 3 à 4 semaines.</p>
+        <div class="offre-price">1 400 € <span>paiement unique</span></div>
+      </div>
+      <div class="offre o3">
+        <div class="offre-badge">Sur mesure</div>
+        <h3>Projet Spécifique</h3>
+        <p>Fonctionnalités avancées, e-commerce, espace client, intégrations API. Devis personnalisé après échange.</p>
+        <div class="offre-price">Sur devis</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;text-align:center">
+      <a href="mailto:contact.studioselene@gmail.com" class="btn-main" style="display:inline-flex;align-items:center;gap:8px">Demander un devis gratuit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT IA -->
+<section class="sn" id="agent-ia">
+  <div class="wrap">
+    <div class="stag reveal">Agent IA</div>
+    <h2 class="reveal">Votre meilleur commercial<br>ne dort jamais</h2>
+    <p class="lead reveal">Un agent IA intégré à votre site répond à vos visiteurs, qualifie vos prospects et prend des rendez-vous — à votre place, 24h/24.</p>
+
+    <div class="feat-grid reveal">
+      <div class="feat-list">
+        <div class="feat-item">
+          <span class="feat-icon">💬</span>
+          <div>
+            <div class="feat-title">Répond instantanément</div>
+            <div class="feat-desc">Vos visiteurs obtiennent une réponse en moins de 2 secondes, à toute heure, y compris le week-end.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-icon">🎯</span>
+          <div>
+            <div class="feat-title">Qualifie vos leads</div>
+            <div class="feat-desc">L'agent collecte les informations clés (budget, projet, délai) avant de vous transmettre le contact.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-icon">🧠</span>
+          <div>
+            <div class="feat-title">Formé sur votre entreprise</div>
+            <div class="feat-desc">Il connaît vos produits, vos tarifs, vos conditions — et parle au nom de votre marque.</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-icon">📈</span>
+          <div>
+            <div class="feat-title">Mémoire de conversation</div>
+            <div class="feat-desc">Il retient le contexte d'un échange à l'autre pour une expérience fluide et personnalisée.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feat-visual">
+        <div class="fv-bar"><div class="fv-dot" style="background:var(--gold2)"></div><span>Agent IA — Votre entreprise</span><div class="fv-line"></div></div>
+        <div class="fv-chat">
+          <div class="fv-msg user">Bonjour, quels sont vos délais pour un site vitrine ?</div>
+          <div class="fv-msg bot">Bonjour ! Pour un site vitrine, nous livrons en 2 semaines. Vous souhaitez un devis personnalisé ?</div>
+          <div class="fv-msg user">Oui, mon budget est autour de 900 €</div>
+          <div class="fv-msg bot">Parfait, notre offre Vitrine à 500 € correspond exactement. Je transmets votre demande — un conseiller vous contacte sous 24h.</div>
+          <div class="fv-typing"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem;display:flex;align-items:center;justify-content:space-between;padding:2rem 2.5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r)">
+      <div>
+        <div style="font-size:20px;font-weight:800;color:#fff;margin-bottom:.3rem">Agent IA — 199 € / mois</div>
+        <div style="font-size:14px;font-weight:300;color:rgba(255,255,255,.45)">Installation incluse · Support inclus · Sans engagement</div>
+      </div>
+      <a href="mailto:contact.studioselene@gmail.com" class="btn-main">Demander une démo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- STRATAUDIT -->
+<section class="sw" id="strataudit">
+  <div class="wrap">
+    <div class="stag reveal">Audit financier</div>
+    <h2 class="reveal">Prenez les bonnes décisions<br>pour votre entreprise</h2>
+    <p class="lead reveal">StratAudit analyse vos données financières et vous livre en 60 secondes un diagnostic complet — comme un directeur financier dans votre poche.</p>
+
+    <div class="strataudit-cta reveal">
+      <div class="sa-left">
+        <h3>StratAudit — Diagnostic Financier</h3>
+        <p>Trésorerie, rentabilité, endettement, score de santé sur 100 et recommandations chiffrées en euros. Accès immédiat après paiement par clé de licence.</p>
+        <a href="https://strataudit.fr" target="_blank" class="btn-sa">Accéder à StratAudit →</a>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div class="sa-price">Accès unique</div>
+        <div class="sa-amount">139 €</div>
+        <div class="sa-once">Résultats en 60 secondes</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:1.5rem">
+      <div style="border:1.5px solid var(--border);border-radius:var(--r);padding:1.2rem;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.02em">4</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:3px">Axes analysés</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:var(--r);padding:1.2rem;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.02em">10+</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:3px">Ratios calculés</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:var(--r);padding:1.2rem;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.02em">60s</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:3px">Résultats</div>
+      </div>
+      <div style="border:1.5px solid var(--border);border-radius:var(--r);padding:1.2rem;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--navy);letter-spacing:-.02em">139€</div>
+        <div style="font-size:12px;color:var(--text3);margin-top:3px">Accès unique</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI NOUS -->
+<section class="sn">
+  <div class="wrap">
+    <div class="stag reveal">Pourquoi Sélène Conseil</div>
+    <h2 class="reveal">Pas une agence généraliste.<br>Un partenaire pour dirigeants.</h2>
+    <p class="lead reveal">Nous nous adressons exclusivement aux dirigeants de PME et TPE qui veulent des outils sérieux, livrés vite, sans jargon.</p>
+
+    <div class="pourquoi-grid reveal">
+      <div class="pq" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)">
+        <div class="pq-icon">⚡</div>
+        <h3 style="color:#fff">Livraison rapide</h3>
+        <p style="color:rgba(255,255,255,.5)">Un site vitrine livré en 2 semaines. Un agent IA opérationnel en 48h. Pas de projet qui traîne 6 mois.</p>
+      </div>
+      <div class="pq" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)">
+        <div class="pq-icon">🎯</div>
+        <h3 style="color:#fff">Une seule cible</h3>
+        <p style="color:rgba(255,255,255,.5)">Tout ce que nous concevons est pensé pour le dirigeant de PME ou TPE. Pas de template générique, pas de sur-mesure inutile.</p>
+      </div>
+      <div class="pq" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)">
+        <div class="pq-icon">💶</div>
+        <h3 style="color:#fff">Prix transparents</h3>
+        <p style="color:rgba(255,255,255,.5)">Chaque offre a un prix affiché. Pas de surprise à la facture, pas de coût caché. Vous savez exactement ce que vous payez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2 class="reveal">Prêt à passer à l'action ?</h2>
+    <p class="reveal">Choisissez le produit qui correspond à votre besoin — ou contactez-nous pour en parler.</p>
+    <div class="cta-btns reveal">
+      <a href="mailto:contact.studioselene@gmail.com" class="btn-main">Parlons de votre projet →</a>
+      <a href="https://strataudit.fr" target="_blank" class="btn-light">Essayer StratAudit — 139 €</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo"><em>Sélène</em>&nbsp;Conseil</div>
+  <div class="f-links">
+    <a href="#creation">Création web</a>
+    <a href="#agent-ia">Agent IA</a>
+    <a href="https://strataudit.fr" target="_blank">StratAudit</a>
+    <a href="mailto:contact.studioselene@gmail.com">Contact</a>
+  </div>
+  <div class="f-copy">© 2026 Sélène Conseil</div>
+</footer>
+
+<script>
+var obs = new IntersectionObserver(function(e){
+  e.forEach(function(el){if(el.isIntersecting){el.target.classList.add('on');obs.unobserve(el.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+</script>
+</body>
+</html>
